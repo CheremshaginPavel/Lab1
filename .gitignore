@@ -34,3 +34,6 @@
 # VS files
 *.filters
 *.user
+.vs
+.editorconfig
+*.aps

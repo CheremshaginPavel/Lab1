@@ -139,7 +139,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="lab1.cpp" />
+    <ClCompile Include="cars.cpp" />
+    <ClCompile Include="fabric.cpp" />
+    <ClCompile Include="furniture.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="workers.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cars.h" />
+    <ClInclude Include="fabric.h" />
+    <ClInclude Include="furniture.h" />
+    <ClInclude Include="keeper.h" />
+    <ClInclude Include="workers.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
