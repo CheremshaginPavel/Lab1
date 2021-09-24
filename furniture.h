@@ -9,10 +9,11 @@
 
 #pragma once
 #include <string>
+#include "fabric.h"
 
 using namespace std;
 
-class furniture
+class furniture : public fabric
 {
 private:
     string type;
@@ -21,6 +22,7 @@ private:
     string material;
     int cost;
 public:
+    virtual void all_data() override;
     string get_type();
     void set_type(string type);
     string get_dimensions();

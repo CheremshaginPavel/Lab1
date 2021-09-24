@@ -8,9 +8,11 @@
 */
 #pragma once
 #include <string>
+#include "fabric.h"
+
 using namespace std;
 
-class workers
+class workers : public fabric
 {
 private:
 	string FIO;
@@ -19,6 +21,7 @@ private:
 	string home_addr;
 	string phone_number;
 public:
+	virtual void all_data() override;
 	string get_FIO();
 	void set_FIO(string FIO);
 	string get_post();

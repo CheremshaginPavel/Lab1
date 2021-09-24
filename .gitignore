@@ -34,6 +34,9 @@
 # VS files
 *.filters
 *.user
-.vs
+.vs/
 .editorconfig
 *.aps
+*.VC.db
+*.suo
+x64/

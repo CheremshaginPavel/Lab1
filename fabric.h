@@ -2,9 +2,7 @@
 
 class fabric
 {
-private:
-
 public:
-	virtual int container() = 0;
-
+	virtual void all_data() = 0; // все данные из класса по определенному объекту
+	virtual ~fabric();
 };
