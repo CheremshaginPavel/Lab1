@@ -12,22 +12,138 @@ void workers::all_data()
 	cout << phone_number << endl;
 }
 
-string workers::get_FIO() { return FIO; }
+void workers::all_set()
+{
+	while (1)
+	{
+		system("cls");
+		cout << "Введите ФИО сотрудника: ";
+		cin >> FIO;
+		if (excep(FIO) == -2 || excep(FIO) == -3)
+			continue;
+	}
+	while (1)
+	{
+		system("cls");
+		cout << "Введите должность сотрудника: ";
+		cin >> post;
+		if (excep(post) == -2 || excep(post) == -3)
+			continue;
+	}
+	while (1)
+	{
+		system("cls");
+		cout << "Введите зарплату сотрудника: ";
+		cin >> salary;
+		if (excep_dec(salary) == 1 || excep_dec(salary) == -4)
+			continue;
+	}
+	while (1)
+	{
+		system("cls");
+		cout << "Введите домашний адрес сотрудника (вместо пробелов нижние подчеркивания!): ";
+		cin >> home_addr;
+		if (excep(home_addr) == -2 || excep(home_addr) == -3)
+			continue;
+	}
+	while (1)
+	{
+		system("cls");
+		cout << "Введите номер телефона сотрудника (слитно): ";
+		cin >> phone_number;
+		if (excep(phone_number) == -2 || excep(phone_number) == -3)
+			continue;
+	}
+}
 
-void workers::set_FIO(string FIO) { this->FIO = FIO; }
+workers::workers()
+{
+	FIO = "Unnamed";
+	post = "No information";
+	salary = 0;
+	home_addr = "No information";
+	phone_number = "No information";
 
-string workers::get_post() { return post; }
+}
 
-void workers::set_post(string post) { this->post = post; }
+workers::workers(string f, string p, int s, string h, string ph)
+{
+	FIO = f;
+	post = p;
+	salary = s;
+	home_addr = h;
+	phone_number = ph;
+}
 
-int workers::get_salary() { return salary; }
+workers::workers(const workers& Workers) :
+	FIO(Workers.FIO), post(Workers.post), salary(Workers.salary), home_addr(Workers.home_addr), phone_number(Workers.phone_number) {}
 
-void workers::set_salary(int salary) { this->salary = salary; }
+workers::~workers() {}
 
-string workers::get_home_addr() { return home_addr; }
+int workers::excep(string line)
+{
+	try
+	{
+		if (line.empty())
+			throw - 2;
+		if (line.find(" "))
+			throw - 3;
+	}
+	catch (int a)
+	{
+		switch (a)
+		{
+		case -4:
+		{
+			cout << "Стоимость не может быть отрицательной!!!" << endl;
+			system("pause");
+			return -4;
+		}
+		case -3:
+		{
+			cout << "В данном поле не должно быть пробелов!" << endl;
+			system("pause");
+			return -3;
+		}
+		case -2:
+		{
+			cout << "Данное поле не может быть пустым!!!" << endl;
+			system("pause");
+			return -2;
+		}
+		default:
+		{
+			cout << "Что-то пошло не так!" << endl;
+			system("pause");
+			break;
+		}
+		}
+	}
+	return 0;
+}
 
-void workers::set_home_addr(string home_addr) { this->home_addr = home_addr; }
+int workers::excep_dec(int value)
+{
+	try
+	{
+		if (!cin.good())
+		{
+			cout << "Вы вводите неправильные данные! Попробуйте еще раз!" << endl;
+			system("pause");
+			cin.clear();
+			while (cin.get() != '\n');
+			return 1;
+		}
+		if (salary < 0)
+			throw - 4;
+	}
+	catch (int)
+	{
+		cout << "Заработная плата не может быть отрицательной!!!" << endl;
+		system("pause");
+		return -4;
+	}
+	return 0;
+}
 
-string workers::get_phone_number() { return phone_number; }
 
-void workers::set_phone_number(string phone_number) { this->phone_number = phone_number; }

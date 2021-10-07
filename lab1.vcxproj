@@ -140,13 +140,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cars.cpp" />
+    <ClCompile Include="element.cpp" />
     <ClCompile Include="fabric.cpp" />
     <ClCompile Include="furniture.cpp" />
+    <ClCompile Include="keeper.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="workers.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="all_headers.h" />
     <ClInclude Include="cars.h" />
+    <ClInclude Include="element.h" />
     <ClInclude Include="fabric.h" />
     <ClInclude Include="furniture.h" />
     <ClInclude Include="keeper.h" />

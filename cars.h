@@ -19,14 +19,10 @@ private:
 	string state_number;
 public:
 	virtual void all_data() override;
+	virtual void all_set() override;
 	cars();
 	cars(string brand, string model, string st_num);
 	cars(const cars& Cars);
+	int excep(string line);
 	~cars();
-	string get_brand();
-	void set_brand(string brand);
-	string get_model();
-	void set_model(string model);
-	string get_state_number();
-	void set_state_number(string state_number);
 };

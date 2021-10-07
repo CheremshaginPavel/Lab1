@@ -15,8 +15,10 @@
 
 #include <iostream>
 #include <Windows.h>
+#include "all_headers.h"
 
 int main()
 {
-    
+    //setlocale(LC_ALL, "Rus");
+    return 0;
 }

@@ -3,6 +3,7 @@
 class fabric
 {
 public:
-	virtual void all_data() = 0; // все данные из класса по определенному объекту
+	virtual void all_data() = 0;
+	virtual void all_set() = 0;
 	virtual ~fabric();
 };
