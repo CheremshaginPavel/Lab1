@@ -5,11 +5,11 @@ using namespace std;
 
 void furniture::all_data()
 {
-	cout << type << endl;
-	cout << dimensions << endl;
-	cout << color << endl;
-	cout << material << endl;
-	cout << cost << endl;
+	cout << "“ип: " << type << endl;
+	cout << "–азмеры: " << dimensions << endl;
+	cout << "÷вет: " << color << endl;
+	cout << "ћатериал: " << material << endl;
+	cout << "÷ена: " << cost << endl;
 }
 
 void furniture::all_set()
@@ -19,32 +19,36 @@ void furniture::all_set()
 		system("cls");
 		cout << "¬ведите тип мебели: ";
 		cin >> type;
-		if (excep(type) == -2 || excep(type) == -3)
+		if (excep(type) == -2)
 			continue;
+		break;
 	}
 	while (1)
 	{
 		system("cls");
-		cout << "¬ведите тип размеры мебели (ƒхЎх¬ без пробелов! (мм)): ";
+		cout << "¬ведите размеры мебели (ƒхЎх¬ без пробелов! (мм)): ";
 		cin >> dimensions;
-		if (excep(dimensions) == -2 || excep(dimensions) == -3)
+		if (excep(dimensions) == -2)
 			continue;
+		break;
 	}
 	while (1)
 	{
 		system("cls");
 		cout << "¬ведите цвет мебели: ";
 		cin >> color;
-		if (excep(color) == -2 || excep(color) == -3)
+		if (excep(color) == -2)
 			continue;
+		break;
 	}
 	while (1)
 	{
 		system("cls");
 		cout << "¬ведите материал мебели: ";
 		cin >> material;
-		if (excep(material) == -2 || excep(material) == -3)
+		if (excep(material) == -2)
 			continue;
+		break;
 	}
 	while (1)
 	{
@@ -53,7 +57,23 @@ void furniture::all_set()
 		cin >> cost;
 		if (excep_dec(cost) == 1 || excep_dec(cost) == -4)
 			continue;
+		break;
 	}
+}
+
+void furniture::all_recover(ifstream& in)
+{
+	
+}
+
+void furniture::all_save(ofstream& out)
+{
+	out << 3 << endl;
+	out << type << endl;
+	out << dimensions << endl;
+	out << color << endl;
+	out << material << endl;
+	out << cost << endl << endl;
 }
 
 furniture::furniture()
@@ -85,25 +105,11 @@ int furniture::excep(string line)
 	{
 		if (line.empty())
 			throw -2;
-		if (line.find(" "))
-			throw -3;
 	}
 	catch (int a)
 	{
 		switch (a)
 		{
-		case -4:
-		{
-			cout << "—тоимость не может быть отрицательной!!!" << endl;
-			system("pause");
-			return -4;
-		}
-		case -3:
-		{
-			cout << "¬ данном поле не должно быть пробелов!" << endl;
-			system("pause");
-			return -3;
-		}
 		case -2:
 		{
 			cout << "ƒанное поле не может быть пустым!!!" << endl;

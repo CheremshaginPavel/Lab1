@@ -1,6 +1,7 @@
 #include "keeper.h"
 #include <iostream>
 #include <fstream>
+#include <typeinfo>
 
 Keeper::Keeper() { tail = nullptr; size = 0; }
 
@@ -56,36 +57,80 @@ void Keeper::push(fabric* obj)
 	size++;
 }
 
-int Keeper::save_all(Keeper& keeper)
+int Keeper::save_all()
 {
-	string path = "base.txt";
-	ofstream fout;
-	fout.open(path, ofstream::app);
+	int Size = size;
+	ofstream out("base.txt", std::ios::app);
+	element* tmp = tail;
 
-	if (!fout.is_open())
-		return 2;
+	if (out.is_open())
+	{
+		out << get_size() << endl;
+		for (int i = Size; i > 0; --i)
+		{
+			tmp->get_obj()->all_save(out);
+			tmp = tmp->get_prev();
+		}
+	}
 	else
 	{
-		fout.write((char*)&keeper, sizeof(Keeper));
+		cout << "Файл не может быть открыт или поврежден!" << endl;
+		system("pause");
+		return -1;
 	}
-	fout.close();
+	out.close();
+
 	return 1;
 }
 
-int recover_all(Keeper& keeper)
+int Keeper::recover_all()
 {
-	string path = "base.txt";
-	ifstream fin;
-	fin.open(path);
+	int Size = size;
+	fabric* fab;
+	string line;
+	int res;
+	
+	ifstream fin("base.txt");
 
-	if (!fin.is_open())
-		return 2;
+	if (fin.is_open())
+	{
+		getline(fin, line);
+		res = stoi(line);
+		for (int i = 0; i < res; i++)
+		{
+			
+		}
+	}
 	else
 	{
-		
+		cout << "Файл не может быть открыт или поврежден!" << endl;
+		system("pause");
+		return -1;
 	}
 	fin.close();
 	return 1;
 }
 
 bool Keeper::isempty() { return size > 0 ? true : false; }
+
+void Keeper::show()
+{ 
+	int Size = size;
+	if (!isempty())
+	{
+		cout << "Очередь пустая!" << endl;
+		system("pause");
+		return;
+	}
+	element* temp = tail;
+	while (temp->get_prev() != nullptr)
+	{
+		cout << Size << ". ";
+		temp->get_obj()->all_data();
+		cout << endl;
+		temp = temp->get_prev();
+		Size--;
+	}
+	cout << Size << ". ";
+	temp->get_obj()->all_data();
+}

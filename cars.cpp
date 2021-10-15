@@ -6,9 +6,9 @@ using namespace std;
 
 void cars::all_data() 
 {
-	cout << brand << endl;
-	cout << model << endl;
-	cout << state_number << endl;
+	cout << "Бренд: " << brand << endl;
+	cout << "Модель: " << model << endl;
+	cout << "Гос. номер: " << state_number << endl;
 }
 
 void cars::all_set()
@@ -18,25 +18,41 @@ void cars::all_set()
 		system("cls");
 		cout << "Введите бренд автомобиля: ";
 		cin >> brand;
-		if (excep(brand) == -2 || excep(brand) == -3)
+		if (excep(brand) == -2)
 			continue;
+		break;
 	}
 	while(1)
 	{
 		system("cls");
 		cout << "Введите модель автомобиля: ";
 		cin >> model;
-		if (excep(model) == -2 || excep(model) == -3)
+		if (excep(model) == -2)
 			continue;
+		break;
 	}
 	while (1)
 	{
 		system("cls");
 		cout << "Введите гос. номер автомобиля: ";
 		cin >> state_number;
-		if (excep(model) == -2 || excep(model) == -3)
+		if (excep(model) == -2)
 			continue;
+		break;
 	}
+}
+
+void cars::all_recover(ifstream& in)
+{
+	
+}
+
+void cars::all_save(ofstream& out)
+{
+	out << 1 << endl;
+	out << brand << endl;
+	out << model << endl;
+	out << state_number << endl << endl;
 }
 
 cars::cars() 
@@ -60,8 +76,6 @@ int cars::excep(string line)
 	{
 		if (line.empty())
 			throw -2;
-		if (line.find(" "))
-			throw -3;
 	}
 	catch (int a)
 	{
@@ -72,12 +86,6 @@ int cars::excep(string line)
 			cout << "Название нельзя оставлять пустым!!!" << endl;
 			system("pause");
 			return -2;
-		}
-		case -3:
-		{
-			cout << "В названии нельзя использовать пробелы!" << endl;
-			system("pause");
-			return -3;
 		}
 		default:
 		{

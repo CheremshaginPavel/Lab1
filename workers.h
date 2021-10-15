@@ -23,6 +23,8 @@ private:
 public:
 	virtual void all_data() override;
 	virtual void all_set() override;
+	virtual void all_recover(ifstream& in) override;
+	virtual void all_save(ofstream& out) override;
 	workers();
 	workers(string f, string p, int s, string h, string ph);
 	workers(const workers& Workers);

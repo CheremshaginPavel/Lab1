@@ -24,6 +24,8 @@ private:
 public:
     virtual void all_data() override;
     virtual void all_set() override;
+    virtual void all_recover(ifstream& in) override;
+    virtual void all_save(ofstream& out) override;
     furniture();
     furniture(string t, string d, string c, string m, int ct);
     furniture(const furniture& fur);

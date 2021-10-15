@@ -5,11 +5,11 @@ using namespace std;
 
 void workers::all_data()
 {
-	cout << FIO << endl;
-	cout << post << endl;
-	cout << salary << endl;
-	cout << home_addr << endl;
-	cout << phone_number << endl;
+	cout << "ФИО: " << FIO << endl;
+	cout << "Должность: " << post << endl;
+	cout << "Зарплата: " << salary << endl;
+	cout << "Домашний адрес: " << home_addr << endl;
+	cout << "Номер телефона: " << phone_number << endl;
 }
 
 void workers::all_set()
@@ -19,16 +19,18 @@ void workers::all_set()
 		system("cls");
 		cout << "Введите ФИО сотрудника: ";
 		cin >> FIO;
-		if (excep(FIO) == -2 || excep(FIO) == -3)
+		if (excep(FIO) == -2)
 			continue;
+		break;
 	}
 	while (1)
 	{
 		system("cls");
 		cout << "Введите должность сотрудника: ";
 		cin >> post;
-		if (excep(post) == -2 || excep(post) == -3)
+		if (excep(post) == -2)
 			continue;
+		break;
 	}
 	while (1)
 	{
@@ -37,23 +39,41 @@ void workers::all_set()
 		cin >> salary;
 		if (excep_dec(salary) == 1 || excep_dec(salary) == -4)
 			continue;
+		break;
 	}
 	while (1)
 	{
 		system("cls");
 		cout << "Введите домашний адрес сотрудника (вместо пробелов нижние подчеркивания!): ";
 		cin >> home_addr;
-		if (excep(home_addr) == -2 || excep(home_addr) == -3)
+		if (excep(home_addr) == -2)
 			continue;
+		break;
 	}
 	while (1)
 	{
 		system("cls");
 		cout << "Введите номер телефона сотрудника (слитно): ";
 		cin >> phone_number;
-		if (excep(phone_number) == -2 || excep(phone_number) == -3)
+		if (excep(phone_number) == -2)
 			continue;
+		break;
 	}
+}
+
+void workers::all_recover(ifstream& in)
+{
+
+}
+
+void workers::all_save(ofstream& out)
+{
+	out << 2 << endl;
+	out << FIO << endl;
+	out << post << endl;
+	out << salary << endl;
+	out << home_addr << endl;
+	out << phone_number << endl << endl;
 }
 
 workers::workers()
@@ -85,9 +105,7 @@ int workers::excep(string line)
 	try
 	{
 		if (line.empty())
-			throw - 2;
-		if (line.find(" "))
-			throw - 3;
+			throw -2;
 	}
 	catch (int a)
 	{
@@ -98,12 +116,6 @@ int workers::excep(string line)
 			cout << "Стоимость не может быть отрицательной!!!" << endl;
 			system("pause");
 			return -4;
-		}
-		case -3:
-		{
-			cout << "В данном поле не должно быть пробелов!" << endl;
-			system("pause");
-			return -3;
 		}
 		case -2:
 		{

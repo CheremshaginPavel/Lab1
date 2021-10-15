@@ -1,6 +1,6 @@
 #include "element.h"
 
-fabric& element::get_obj() { return *obj; }
+fabric* element::get_obj() { return obj; }
 
 element* element::get_prev() { return prev; }
 

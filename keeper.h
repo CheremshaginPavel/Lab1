@@ -18,10 +18,10 @@ public:
 	Keeper(const Keeper& keeper);
 	int get_size();
 	int pop();
-	int pop_cust(fabric* obj);
 	void push(fabric* obj);
-	int save_all(Keeper& keeper);
-	int recover_all(Keeper& keeper);
+	int save_all();
+	int recover_all();
 	bool isempty();
+	void show();
 	~Keeper();
 };
