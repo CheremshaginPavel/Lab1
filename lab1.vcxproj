@@ -156,6 +156,9 @@
     <ClInclude Include="keeper.h" />
     <ClInclude Include="workers.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="base.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -61,9 +61,46 @@ void workers::all_set()
 	}
 }
 
-void workers::all_recover(ifstream& in)
+void workers::all_recover(ifstream& fin)
 {
-
+	string line;
+	for (int i = 0; i < 5; i++)
+	{
+		getline(fin, line);
+		switch (i)
+		{
+		case 0:
+		{
+			FIO = line;
+			break;
+		}
+		case 1:
+		{
+			post = line;
+			break;
+		}
+		case 2:
+		{
+			int res = stoi(line);
+			salary = res;
+			break;
+		}
+		case 3:
+		{
+			home_addr = line;
+			break;
+		}
+		case 4:
+		{
+			phone_number = line;
+			break;
+		}
+		default:
+		{
+			break;
+		}
+		}
+	}
 }
 
 void workers::all_save(ofstream& out)
@@ -73,7 +110,7 @@ void workers::all_save(ofstream& out)
 	out << post << endl;
 	out << salary << endl;
 	out << home_addr << endl;
-	out << phone_number << endl << endl;
+	out << phone_number << endl;
 }
 
 workers::workers()

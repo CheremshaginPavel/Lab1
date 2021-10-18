@@ -37,6 +37,5 @@
 .vs/
 .editorconfig
 *.aps
-*.VC.db
-*.suo
+*.db
 x64/

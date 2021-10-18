@@ -112,25 +112,70 @@ void starting()
 		}
 		case 2:
 		{
-			keeper->pop();
+			if (!(keeper->pop()))
+			{
+				cout << "Удаление невозможно! Очередь пуста!" << endl;
+				system("pause");
+			}
 			continue;
 		}
 		case 3:
 		{
-			if (keeper->save_all())
+			system("cls");
+			int answ;
+			if (keeper->get_size() == 0)
 			{
-				cout << "Сохранение прошло успешно!" << endl;
+				cout << "Очередь пуста, запись невозможна!" << endl;
 				system("pause");
+				continue;
+			}
+			cout << "Хотите добавить в файл(1) или перезаписать(2)?" << endl;
+			cin >> answ;
+			if (!check_input())
+			{
+				cout << "Вы вводите неверные данные! Попробуйте еще раз!" << endl;
+				system("pause");
+				continue;
+			}
+			switch (answ)
+			{
+			case 1:
+			{
+				if (keeper->save_all())
+				{
+					cout << "Сохранение прошло успешно!" << endl;
+					system("pause");
+				}
+				break;
+			}
+			case 2:
+			{
+				if (remove("base.txt") != 0)
+					cout << "Ошибка перезаписи";
+				else
+				{
+					if (keeper->save_all())
+						cout << "Сохранение прошло успешно!" << endl;
+				}
+				system("pause");
+				break;
+			}
+			default:
+			{
+				cout << "Неверные данные! Проверьте работоспособность программы!" << endl;
+				system("pause");
+				break;
+			}
 			}
 			continue;
 		}
 		case 4:
 		{
-			if (keeper->recover_all())
-			{
+			if ((keeper->recover_all()) != -1)
 				cout << "Восстановление прошло успешно!" << endl;
-				system("pause");
-			}
+			else
+				cout << "Файл пуст!" << endl;
+			system("pause");
 			continue;
 		}
 		case 5:

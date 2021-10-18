@@ -61,9 +61,46 @@ void furniture::all_set()
 	}
 }
 
-void furniture::all_recover(ifstream& in)
+void furniture::all_recover(ifstream& fin)
 {
-	
+	string line;
+	for (int i = 0; i < 5; i++)
+	{
+		getline(fin, line);
+		switch (i)
+		{
+		case 0:
+		{
+			type = line;
+			break;
+		}
+		case 1:
+		{
+			dimensions = line;
+			break;
+		}
+		case 2:
+		{
+			color = line;
+			break;
+		}
+		case 3:
+		{
+			material = line;
+			break;
+		}
+		case 4:
+		{
+			int res = stoi(line);
+			cost = res;
+			break;
+		}
+		default:
+		{
+			break;
+		}
+		}
+	}
 }
 
 void furniture::all_save(ofstream& out)
@@ -73,7 +110,7 @@ void furniture::all_save(ofstream& out)
 	out << dimensions << endl;
 	out << color << endl;
 	out << material << endl;
-	out << cost << endl << endl;
+	out << cost << endl;
 }
 
 furniture::furniture()

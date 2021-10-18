@@ -61,15 +61,16 @@ int Keeper::save_all()
 {
 	int Size = size;
 	ofstream out("base.txt", std::ios::app);
-	element* tmp = tail;
+	element* tmp;
 
 	if (out.is_open())
 	{
-		out << get_size() << endl;
-		for (int i = Size; i > 0; --i)
+		for (int i = Size; i > 0; i--)
 		{
+			tmp = tail;
+			for(int j = 0; j < (i - 1); j++)
+				tmp = tmp->get_prev();
 			tmp->get_obj()->all_save(out);
-			tmp = tmp->get_prev();
 		}
 	}
 	else
@@ -85,20 +86,54 @@ int Keeper::save_all()
 
 int Keeper::recover_all()
 {
-	int Size = size;
-	fabric* fab;
 	string line;
 	int res;
 	
 	ifstream fin("base.txt");
 
+	if ((this->get_size()) > 0)
+	{
+		while ((this->get_size()) > 0)
+			this->pop();
+	}
+
 	if (fin.is_open())
 	{
-		getline(fin, line);
-		res = stoi(line);
-		for (int i = 0; i < res; i++)
+		if(fin.peek() == EOF)
+			return -1;
+		while (getline(fin, line))
 		{
-			
+			res = stoi(line);
+			switch (res)
+			{
+			case 1:
+			{
+				fabric* fab = new cars();
+				fab->all_recover(fin);
+				this->push(fab);
+				break;
+			}
+			case 2:
+			{
+				fabric* fab = new workers();
+				fab->all_recover(fin);
+				this->push(fab);
+				break;
+			}
+			case 3:
+			{
+				fabric* fab = new furniture();
+				fab->all_recover(fin);
+				this->push(fab);
+				break;
+			}
+			default:
+			{
+				cout << "Что-то пошло не так! Проверьте правильноть работы программы!" << endl;
+				system("pause");
+				return -2;
+			}
+			}
 		}
 	}
 	else
@@ -119,7 +154,6 @@ void Keeper::show()
 	if (!isempty())
 	{
 		cout << "Очередь пустая!" << endl;
-		system("pause");
 		return;
 	}
 	element* temp = tail;

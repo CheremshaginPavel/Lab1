@@ -42,9 +42,35 @@ void cars::all_set()
 	}
 }
 
-void cars::all_recover(ifstream& in)
+void cars::all_recover(ifstream& fin)
 {
-	
+	string line;
+	for (int i = 0; i < 3; i++)
+	{
+		getline(fin, line);
+		switch (i)
+		{
+		case 0:
+		{
+			brand = line;
+			break;
+		}
+		case 1:
+		{
+			model = line;
+			break;
+		}
+		case 2:
+		{
+			state_number = line;
+			break;
+		}
+		default:
+		{
+			break;
+		}
+		}
+	}
 }
 
 void cars::all_save(ofstream& out)
@@ -52,7 +78,7 @@ void cars::all_save(ofstream& out)
 	out << 1 << endl;
 	out << brand << endl;
 	out << model << endl;
-	out << state_number << endl << endl;
+	out << state_number << endl;
 }
 
 cars::cars() 
